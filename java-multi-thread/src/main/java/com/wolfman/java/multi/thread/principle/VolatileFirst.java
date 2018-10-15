@@ -1,4 +1,4 @@
-package com.wolfman.java.principle;
+package com.wolfman.java.multi.thread.principle;
 
 public class VolatileFirst {
 

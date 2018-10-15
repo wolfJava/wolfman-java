@@ -1,4 +1,4 @@
-package com.wolfman.java.simple.grace;
+package com.wolfman.java.multi.thread.simple.grace;
 
 public interface RequestProcessor {
 

@@ -1,4 +1,4 @@
-package com.wolfman.java.status;
+package com.wolfman.java.multi.thread.status;
 
 import java.util.concurrent.TimeUnit;
 

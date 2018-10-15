@@ -1,4 +1,4 @@
-package com.wolfman.java.simple;
+package com.wolfman.java.multi.thread.simple;
 
 public class MyThread extends Thread {
 

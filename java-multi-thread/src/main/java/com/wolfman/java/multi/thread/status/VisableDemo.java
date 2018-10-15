@@ -1,21 +1,23 @@
-package com.wolfman.java.status;
+package com.wolfman.java.multi.thread.status;
 
 import java.util.concurrent.TimeUnit;
 
-public class InterruptDemo {
+public class VisableDemo {
 
-    private static int i;
+    private  static volatile boolean stop = false;
 
     public static void main(String[] args) throws InterruptedException {
 
         Thread thread = new Thread(()->{
-            while(!Thread.currentThread().isInterrupted()){
+            int i = 0;
+            while (!stop){
                 i++;
             }
-            System.out.println("Num:"+i);
-        },"interruptDemo");
+        });
         thread.start();
         TimeUnit.SECONDS.sleep(1);
-        thread.interrupt();
+        stop = true;
     }
+
+
 }

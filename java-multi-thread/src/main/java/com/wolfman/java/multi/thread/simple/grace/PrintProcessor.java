@@ -1,17 +1,24 @@
-package com.wolfman.java.simple.grace;
+package com.wolfman.java.multi.thread.simple.grace;
 
 import java.util.concurrent.LinkedBlockingQueue;
 
-public class SaveProcessor extends Thread implements RequestProcessor{
+public class PrintProcessor extends Thread implements RequestProcessor {
 
     LinkedBlockingQueue<Request> requests = new LinkedBlockingQueue<Request>();
+
+    private final RequestProcessor nextProcessor;
+
+    public PrintProcessor(RequestProcessor nextProcessor) {
+        this.nextProcessor = nextProcessor;
+    }
 
     @Override
     public void run() {
         while (true) {
             try {
                 Request request=requests.take();
-                System.out.println("begin save request info:"+request);
+                System.out.println("print data:"+request.getName());
+                nextProcessor.processRequest(request);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

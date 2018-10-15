@@ -1,4 +1,4 @@
-package com.wolfman.java.status;
+package com.wolfman.java.multi.thread.status;
 
 public class VolatileDemo {
 
