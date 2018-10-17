@@ -76,9 +76,5 @@ set JAVA_OPTS=-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port
 2. 重启tomcat即可
 3. 双击jvisualvm.exe 添加服务器IP地址，添加需要监控jmx端口即可
 
-
-
-
-
-
+![](https://github.com/wolfJava/wolfman-java/blob/master/java-jvm/img/visualvm.png?raw=true)
 
