@@ -18,5 +18,8 @@ public class VolatileFirst {
         t1.join();
         t2.join();
         System.out.println("x=" + x + "->y=" + y);
+        //有四种结果
+        // x=0,y=1; x=1,y=0; x=1,y=1; x=0,y=0;
+        // t1->x=b t2->b=1 t2->y=a t1->a=1
     }
 }
