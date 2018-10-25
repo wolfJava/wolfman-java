@@ -10,6 +10,7 @@
     <modules>
         <module>java-multi-thread</module>
         <module>java-jvm</module>
+        <module>java-io</module>
     </modules>
     <packaging>pom</packaging>
 
