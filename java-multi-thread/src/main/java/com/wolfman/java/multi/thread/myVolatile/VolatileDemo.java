@@ -1,4 +1,4 @@
-package com.wolfman.java.multi.thread.MyVolatile;
+package com.wolfman.java.multi.thread.myVolatile;
 
 public class VolatileDemo {
 

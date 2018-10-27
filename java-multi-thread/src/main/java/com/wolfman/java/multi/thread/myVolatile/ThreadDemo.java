@@ -1,6 +1,4 @@
-package com.wolfman.java.multi.thread.MyVolatile;
-
-import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
+package com.wolfman.java.multi.thread.myVolatile;
 
 public class ThreadDemo {
 
