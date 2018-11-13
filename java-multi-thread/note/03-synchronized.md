@@ -10,7 +10,8 @@ synchronized关键字来修饰在inc的方法上。再看看执行结果。
 public class Demo {
     private static int count = 0;
     public static void inc(){
-        synchronized (Demo.class){
+        synchronized (Demo.class){//全局锁
+        //synchronized (this){ 对象锁
             try {
                 Thread.sleep(1);
             } catch (InterruptedException e) {
@@ -65,16 +66,18 @@ Mark Word用于存储对象自身的运行时数据，如哈希码(HashCode)、G
 锁、偏向线程 ID、偏向时间戳等等。Java对象头一般占有两个机器码(在32位虚拟机中，1个机器码等于4字节，
 也就是32bit)
 
-![]()
+![](https://github.com/wolfJava/wolfman-java/blob/master/java-multi-thread/img/sync-1.jpg?raw=true)
 
 在源码中的体现：
 
 ​	如果想更深入了解对象头在JVM源码中的定义，需要关心几个文件，oop.hpp/markOop.hpp/oop.hpp，每个 Java Object 在 JVM 内部都有一个 native 的 C++ 对象 oop/oopDesc 与之对应。先在oop.hpp中看 oopDesc的定义：
 
-![]()
+![](https://github.com/wolfJava/wolfman-java/blob/master/java-multi-thread/img/sync-2.jpg?raw=true)
 
 _mark 被声明在 oopDesc 类的顶部，所以这个 _mark 可以认为是一个 头部, 前面我们讲过头部保存了一些重要的
 状态和标识信息，在markOop.hpp文件中有一些注释说明markOop的内存布局
+
+![](https://github.com/wolfJava/wolfman-java/blob/master/java-multi-thread/img/sync-3.jpg?raw=true)
 
 #### 2 monitor
 
@@ -86,7 +89,7 @@ _mark 被声明在 oopDesc 类的顶部，所以这个 _mark 可以认为是一�
 
 Ø objectMonitor.hpp,在hotspot虚拟机中，采用ObjectMonitor类来实现monitor， 
 
-![](4)
+![](https://github.com/wolfJava/wolfman-java/blob/master/java-multi-thread/img/sync-4.jpg?raw=true)
 
 ### 四 synchronized 的锁升级和获取过程
 
@@ -116,7 +119,7 @@ _mark 被声明在 oopDesc 类的顶部，所以这个 _mark 可以认为是一�
 
 前面我们在讲Java对象头的时候，讲到了monitor这个对象，在hotspot虚拟机中，通过ObjectMonitor类来实现 monitor。他的锁的获取过程的体现会简单很多。
 
-![](5)
+![](https://github.com/wolfJava/wolfman-java/blob/master/java-multi-thread/img/sync-5.jpg?raw=true)
 
 ### 五 wait 和 notify
 
@@ -162,7 +165,7 @@ public class ThreadNotify extends Thread {
 调用 wait 方法，首先会获取监视器锁，获得成功以后，会让当前线程进入等待状态进入等待队列并且释放锁;然后
 当其他线程调用 notify 或者 notifyall 以后，会选择从等待队列中唤醒任意一个线程，而执行完 notify 方法以后，并不会立马唤醒线程，原因是当前的线程仍然持有这把锁，处于等待状态的线程无法获得锁。必须要等到当前的线程执行完按 monitorexit 指令以后，也就是锁被释放以后，处于等待队列中的线程就可以开始竞争锁了。
 
-![](6)
+![](https://github.com/wolfJava/wolfman-java/blob/master/java-multi-thread/img/sync-6.jpg?raw=true)
 
 #### 2 wait 和 notify 为什么需要在 synchronized 里面
 
