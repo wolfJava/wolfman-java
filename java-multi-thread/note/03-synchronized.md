@@ -68,6 +68,8 @@ Mark Word用于存储对象自身的运行时数据，如哈希码(HashCode)、G
 
 ![](https://github.com/wolfJava/wolfman-java/blob/master/java-multi-thread/img/sync-1.jpg?raw=true)
 
+![](https://github.com/wolfJava/wolfman-java/blob/master/java-multi-thread/img/sync1-64.jpg?raw=true)
+
 在源码中的体现：
 
 ​	如果想更深入了解对象头在JVM源码中的定义，需要关心几个文件，oop.hpp/markOop.hpp/oop.hpp，每个 Java Object 在 JVM 内部都有一个 native 的 C++ 对象 oop/oopDesc 与之对应。先在oop.hpp中看 oopDesc的定义：
@@ -110,7 +112,7 @@ _mark 被声明在 oopDesc 类的顶部，所以这个 _mark 可以认为是一�
 
 #### 3 轻量级锁
 
-引入轻量级锁的主要目的是在多没有多线程竞争的前提下，减少传统的重量级锁使用操作系统互斥量产生的性能消
+引入轻量级锁的主要目的是在没有多线程竞争的前提下，减少传统的重量级锁使用操作系统互斥量产生的性能消
 耗。当关闭偏向锁功能或者多个线程竞争偏向锁导致偏向锁升级为轻量级锁，则会尝试获取轻量级锁。
 
 #### 4 重量级锁
@@ -133,7 +135,8 @@ public class ThreadWait extends Thread {
     }
     @Override
     public void run() {
-        System.out.println("开始执行 thread wait"); try {
+        System.out.println("开始执行 thread wait"); 
+        try {
             lock.wait();
         } catch (InterruptedException e) {
             e.printStackTrace();
